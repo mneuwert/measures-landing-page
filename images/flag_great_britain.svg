@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Great Britain, The United Kingdom  (GB)</title>
+    <defs>
+        <path d="M48,24 L96,24 L96,48 L48,24 Z M48,24 L48,48 L0,48 L48,24 Z M48,24 L0,24 L0,0 L48,24 Z M48,24 L48,0 L96,0 L48,24 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Great-Britain,-The-United-Kingdom--(GB)">
+            <g id="Shape" fill="#D8D8D8">
+                <circle id="Mask" cx="24" cy="24" r="24"></circle>
+            </g>
+            <g id="Flag" transform="translate(-24, 0)">
+                <rect id="Background" fill="#012169" x="24" y="0" width="48" height="48"></rect>
+                <g id="Symbol" stroke-width="1">
+                    <path d="M0,0 L96,48 M96,0 L0,48" id="White" stroke="#FFFFFF" stroke-width="9.6" fill="#000000" fill-rule="nonzero"></path>
+                    <g id="Red">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="Shape"></g>
+                        <path d="M0,0 L96,48 M96,0 L0,48" id="Shape" stroke="#C8102E" stroke-width="6.4" fill="#000000" fill-rule="nonzero" mask="url(#mask-2)"></path>
+                    </g>
+                    <path d="M48,0 L48,48 M0,24 L96,24" id="White" stroke="#FFFFFF" stroke-width="16" fill="#000000" fill-rule="nonzero"></path>
+                    <path d="M48,0 L48,48 M0,24 L96,24" id="Red" stroke="#C8102E" stroke-width="9.6" fill="#000000" fill-rule="nonzero"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

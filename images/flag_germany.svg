@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Germany  (DE)</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Germany--(DE)">
+            <g id="Shape" fill="#D8D8D8">
+                <circle id="Mask" cx="24" cy="24" r="24"></circle>
+            </g>
+            <g id="Flag">
+                <rect id="Background" fill="#FFCE00" x="0" y="0" width="48" height="48"></rect>
+                <rect id="Red" fill="#DD0000" x="0" y="16" width="48" height="16"></rect>
+                <rect id="Black" fill="#000000" x="0" y="0" width="48" height="16"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
