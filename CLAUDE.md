@@ -30,11 +30,13 @@ This is a static landing page for "Measures" - an iOS unit converter app. The pr
 
 ## Development Commands
 
-Since this is a static website with no build process:
+This static website now uses a proper Tailwind CSS build process:
 
+- **Install Dependencies**: `npm install`
+- **Build CSS (Production)**: `npm run build-css-prod` - Creates minified CSS
+- **Build CSS (Development)**: `npm run dev` - Watches for changes and rebuilds CSS
 - **Local Development**: Use any static file server (e.g., `python -m http.server 8000` or Live Server in VS Code)
-- **No Build Required**: Files can be edited directly and viewed in browser
-- **No Dependencies**: Uses CDN resources (Tailwind CSS, Google Fonts)
+- **Font Loading**: Uses Google Fonts CDN for Inter font family
 
 ## Key Features
 
@@ -46,10 +48,11 @@ Since this is a static website with no build process:
 
 ## Styling Approach
 
-- **Tailwind CSS**: Primary utility framework loaded via CDN
-- **Custom CSS**: Animations, device frames, and specialized components in styles.css
+- **Tailwind CSS**: Primary utility framework with proper build process (not CDN)
+- **Build System**: Uses `css/input.css` as source, builds to `css/styles.css`
+- **Custom CSS**: Animations, device frames, and specialized components
 - **Typography**: Inter font family from Google Fonts
-- **Color Scheme**: Custom "accent" color palette defined in Tailwind config
+- **Color Scheme**: Custom "accent" color palette defined in `tailwind.config.js`
 
 ## Content Management
 

@@ -1,0 +1,29 @@
+{
+  "name": "measures-landing-page",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "postcss css/input.css -o css/styles.css --watch",
+    "build-css-prod": "postcss css/input.css -o css/styles.css",
+    "dev": "postcss css/input.css -o css/styles.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mneuwert/measures-landing-page.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mneuwert/measures-landing-page/issues"
+  },
+  "homepage": "https://github.com/mneuwert/measures-landing-page#readme",
+  "description": "",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^4.1.11"
+  }
+}
