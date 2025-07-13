@@ -47,7 +47,18 @@ const translations = {
         privacyPolicy: "Privacy Policy",
         support: "Support",
         appStore: "App Store",
-        copyright: "© 2025 Measures. All rights reserved."
+        copyright: "© 2025 Measures. All rights reserved.",
+        
+        // Privacy Policy Page
+        backToHome: "Back to Home",
+        privacyPolicyTitle: "Privacy Policy",
+        lastUpdated: "Last updated: January 12, 2025",
+        introductionTitle: "Introduction",
+        introductionText: "Neuwert Media (\"we,\" \"our,\" or \"us\") operates the Measures mobile application (the \"Service\"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.",
+        infoWeCollectTitle: "Information We Collect",
+        dataYouProvideTitle: "Data You Provide",
+        dataYouProvideText: "Measures is designed to work completely offline and does not require any personal information to function. The app stores your preferences and conversion history locally on your device.",
+        autoCollectedTitle: "Automatically Collected Information"
     },
     de: {
         // Header
@@ -96,7 +107,18 @@ const translations = {
         privacyPolicy: "Datenschutzerklärung",
         support: "Support",
         appStore: "App Store",
-        copyright: "© 2025 Measures. Alle Rechte vorbehalten."
+        copyright: "© 2025 Measures. Alle Rechte vorbehalten.",
+        
+        // Privacy Policy Page
+        backToHome: "Zurück zur Startseite",
+        privacyPolicyTitle: "Datenschutzerklärung",
+        lastUpdated: "Zuletzt aktualisiert: 12. Januar 2025",
+        introductionTitle: "Einführung",
+        introductionText: "Neuwert Media (\"wir\", \"unser\" oder \"uns\") betreibt die mobile Anwendung Measures (der \"Service\"). Diese Seite informiert Sie über unsere Richtlinien bezüglich der Erfassung, Verwendung und Offenlegung personenbezogener Daten bei der Nutzung unseres Services und die Wahlmöglichkeiten, die Sie in Bezug auf diese Daten haben.",
+        infoWeCollectTitle: "Informationen, die wir sammeln",
+        dataYouProvideTitle: "Von Ihnen bereitgestellte Daten",
+        dataYouProvideText: "Measures ist darauf ausgelegt, vollständig offline zu funktionieren und benötigt keine persönlichen Informationen. Die App speichert Ihre Einstellungen und Umrechnungshistorie lokal auf Ihrem Gerät.",
+        autoCollectedTitle: "Automatisch gesammelte Informationen"
     },
     zh: {
         // Header
@@ -145,7 +167,18 @@ const translations = {
         privacyPolicy: "隐私政策",
         support: "支持",
         appStore: "App Store",
-        copyright: "© 2025 Measures. 保留所有权利。"
+        copyright: "© 2025 Measures. 保留所有权利。",
+        
+        // Privacy Policy Page
+        backToHome: "返回首页",
+        privacyPolicyTitle: "隐私政策",
+        lastUpdated: "最后更新：2025年1月12日",
+        introductionTitle: "介绍",
+        introductionText: "Neuwert Media（「我们」、「我们的」或「我们」）运营Measures移动应用程序（「服务」）。本页面告知您我们在您使用我们的服务时关于个人数据收集、使用和披露的政策，以及您对这些数据的选择。",
+        infoWeCollectTitle: "我们收集的信息",
+        dataYouProvideTitle: "您提供的数据",
+        dataYouProvideText: "Measures设计为完全离线工作，不需要任何个人信息即可运行。应用程序将您的偏好设置和转换历史记录本地存储在您的设备上。",
+        autoCollectedTitle: "自动收集的信息"
     },
     ja: {
         // Header
@@ -194,7 +227,18 @@ const translations = {
         privacyPolicy: "プライバシーポリシー",
         support: "サポート",
         appStore: "App Store",
-        copyright: "© 2025 Measures. 全著作権所有。"
+        copyright: "© 2025 Measures. 全著作権所有。",
+        
+        // Privacy Policy Page
+        backToHome: "ホームに戻る",
+        privacyPolicyTitle: "プライバシーポリシー",
+        lastUpdated: "最終更新：2025年1月12日",
+        introductionTitle: "はじめに",
+        introductionText: "Neuwert Media（「当社」、「当社の」または「当社」）は、Measuresモバイルアプリケーション（「サービス」）を運営しています。このページでは、当社のサービスをご利用いただく際の個人データの収集、使用、開示に関する当社のポリシーと、そのデータに関してお客様にお選びいただける選択肢についてお知らせします。",
+        infoWeCollectTitle: "収集する情報",
+        dataYouProvideTitle: "お客様が提供するデータ",
+        dataYouProvideText: "Measuresは完全にオフラインで動作するように設計されており、機能するために個人情報を必要としません。アプリはお客様の設定と変換履歴をお客様のデバイスにローカルに保存します。",
+        autoCollectedTitle: "自動的に収集される情報"
     }
 };
 
@@ -233,6 +277,7 @@ class LanguageManager {
         this.updateHTML();
         this.updateScreenshots();
         this.updateContent();
+        this.updateNavigationLinks();
     }
 
     setLanguage(lang) {
@@ -243,7 +288,22 @@ class LanguageManager {
             this.updateScreenshots();
             this.updateHTML();
             this.updateURL();
+            this.updateNavigationLinks();
         }
+    }
+
+    updateNavigationLinks() {
+        // Update "Back to Home" link to preserve language
+        const backToHomeLink = document.querySelector('a[href="index.html"]');
+        if (backToHomeLink) {
+            backToHomeLink.href = `index.html?lang=${this.currentLanguage}`;
+        }
+        
+        // Update privacy policy links to preserve language
+        const privacyLinks = document.querySelectorAll('a[href="privacy.html"]');
+        privacyLinks.forEach(link => {
+            link.href = `privacy.html?lang=${this.currentLanguage}`;
+        });
     }
 
     updateContent() {

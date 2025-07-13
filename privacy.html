@@ -44,11 +44,19 @@
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center space-x-3">
                     <img src="images/Measures_icon_light.png" alt="Measures App Icon" class="w-10 h-10 rounded-xl">
-                    <h1 class="text-2xl font-bold text-gray-900">Measures</h1>
+                    <h1 class="text-2xl font-bold text-gray-900" data-translate="appName">Measures</h1>
                 </div>
-                <a href="index.html" class="text-blue-600 hover:text-blue-700 font-medium transition-colors">
-                    Back to Home
-                </a>
+                <div class="flex items-center space-x-4">
+                    <div class="language-switcher-flags" id="languageSwitcher">
+                        <button class="flag-button active" data-lang="en" title="English">🇺🇸</button>
+                        <button class="flag-button" data-lang="de" title="Deutsch">🇩🇪</button>
+                        <button class="flag-button" data-lang="zh" title="中文">🇨🇳</button>
+                        <button class="flag-button" data-lang="ja" title="日本語">🇯🇵</button>
+                    </div>
+                    <a href="index.html" class="text-blue-600 hover:text-blue-700 font-medium transition-colors" data-translate="backToHome">
+                        Back to Home
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -57,26 +65,26 @@
     <section class="py-20 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="prose prose-lg max-w-none">
-                <h1 class="text-4xl font-bold text-gray-900 mb-8">Privacy Policy</h1>
+                <h1 class="text-4xl font-bold text-gray-900 mb-8" data-translate="privacyPolicyTitle">Privacy Policy</h1>
                 
-                <p class="text-gray-600 mb-8">Last updated: January 12, 2025</p>
+                <p class="text-gray-600 mb-8" data-translate="lastUpdated">Last updated: January 12, 2025</p>
 
-                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">Introduction</h2>
-                <p class="text-gray-700 mb-6">
+                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4" data-translate="introductionTitle">Introduction</h2>
+                <p class="text-gray-700 mb-6" data-translate="introductionText">
                     Neuwert Media ("we," "our," or "us") operates the Measures mobile application (the "Service"). 
                     This page informs you of our policies regarding the collection, use, and disclosure of personal data 
                     when you use our Service and the choices you have associated with that data.
                 </p>
 
-                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4">Information We Collect</h2>
+                <h2 class="text-2xl font-semibold text-gray-900 mt-8 mb-4" data-translate="infoWeCollectTitle">Information We Collect</h2>
                 
-                <h3 class="text-xl font-medium text-gray-900 mt-6 mb-3">Data You Provide</h3>
-                <p class="text-gray-700 mb-4">
+                <h3 class="text-xl font-medium text-gray-900 mt-6 mb-3" data-translate="dataYouProvideTitle">Data You Provide</h3>
+                <p class="text-gray-700 mb-4" data-translate="dataYouProvideText">
                     Measures is designed to work completely offline and does not require any personal information to function. 
                     The app stores your preferences and conversion history locally on your device.
                 </p>
 
-                <h3 class="text-xl font-medium text-gray-900 mt-6 mb-3">Automatically Collected Information</h3>
+                <h3 class="text-xl font-medium text-gray-900 mt-6 mb-3" data-translate="autoCollectedTitle">Automatically Collected Information</h3>
                 <ul class="list-disc pl-6 text-gray-700 mb-6">
                     <li>Basic usage analytics (crash reports, performance metrics) through Apple's built-in analytics</li>
                     <li>App Store analytics for download and usage statistics</li>
@@ -173,5 +181,8 @@
             </div>
         </div>
     </footer>
+    
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
 </body>
 </html>
