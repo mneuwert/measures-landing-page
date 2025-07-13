@@ -250,26 +250,41 @@ class LanguageManager {
     }
 
     detectLanguage() {
-        // Check URL parameter first
+        // Check URL parameter first - this is the highest priority
         const urlParams = new URLSearchParams(window.location.search);
         const urlLang = urlParams.get('lang');
+        console.log('URL lang parameter:', urlLang);
         if (urlLang && translations[urlLang]) {
+            console.log('Using URL language:', urlLang);
             return urlLang;
         }
 
-        // Check localStorage
+        // Check localStorage second
         const savedLang = localStorage.getItem('preferredLanguage');
+        console.log('Saved language:', savedLang);
         if (savedLang && translations[savedLang]) {
+            console.log('Using saved language:', savedLang);
             return savedLang;
         }
 
-        // Check browser language
+        // Check browser language last
         const browserLang = navigator.language.toLowerCase();
-        if (browserLang.startsWith('de')) return 'de';
-        if (browserLang.startsWith('zh')) return 'zh';
-        if (browserLang.startsWith('ja')) return 'ja';
+        console.log('Browser language:', browserLang);
+        if (browserLang.startsWith('de')) {
+            console.log('Using browser language: de');
+            return 'de';
+        }
+        if (browserLang.startsWith('zh')) {
+            console.log('Using browser language: zh');
+            return 'zh';
+        }
+        if (browserLang.startsWith('ja')) {
+            console.log('Using browser language: ja');
+            return 'ja';
+        }
         
         // Default to English
+        console.log('Using default language: en');
         return 'en';
     }
 
@@ -294,15 +309,23 @@ class LanguageManager {
 
     updateNavigationLinks() {
         // Update "Back to Home" link to preserve language
-        const backToHomeLink = document.querySelector('a[href="index.html"]');
-        if (backToHomeLink) {
-            backToHomeLink.href = `index.html?lang=${this.currentLanguage}`;
-        }
+        const backToHomeLinks = document.querySelectorAll('a[href="index.html"], a[href*="index.html"]');
+        backToHomeLinks.forEach(link => {
+            link.href = `index.html?lang=${this.currentLanguage}`;
+        });
         
         // Update privacy policy links to preserve language
-        const privacyLinks = document.querySelectorAll('a[href="privacy.html"]');
+        const privacyLinks = document.querySelectorAll('a[href="privacy.html"], a[href*="privacy.html"]');
         privacyLinks.forEach(link => {
             link.href = `privacy.html?lang=${this.currentLanguage}`;
+        });
+        
+        // Update any relative links that might have existing language params
+        const allInternalLinks = document.querySelectorAll('a[href^="index.html"], a[href^="privacy.html"]');
+        allInternalLinks.forEach(link => {
+            const url = new URL(link.href, window.location.href);
+            url.searchParams.set('lang', this.currentLanguage);
+            link.href = url.pathname + url.search;
         });
     }
 
@@ -375,11 +398,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Language switcher functionality
     const languageSwitcher = document.getElementById('languageSwitcher');
     if (languageSwitcher) {
-        // Add click listeners to flag buttons
         const flagButtons = languageSwitcher.querySelectorAll('.flag-button');
+        console.log('Found flag buttons:', flagButtons.length);
+        console.log('Current language:', languageManager.currentLanguage);
+        
+        // Add click listeners to flag buttons
         flagButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const selectedLang = this.getAttribute('data-lang');
+                console.log('Language button clicked:', selectedLang);
                 languageManager.setLanguage(selectedLang);
                 
                 // Update active state
@@ -388,12 +415,22 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Set initial active state
+        // Set initial active state based on current language
+        flagButtons.forEach(btn => btn.classList.remove('active'));
         const currentButton = languageSwitcher.querySelector(`[data-lang="${languageManager.currentLanguage}"]`);
+        console.log('Setting active button for language:', languageManager.currentLanguage, 'Button found:', !!currentButton);
         if (currentButton) {
-            flagButtons.forEach(btn => btn.classList.remove('active'));
             currentButton.classList.add('active');
+        } else {
+            console.warn('No button found for current language:', languageManager.currentLanguage);
+            // Fallback to English if current language button not found
+            const englishButton = languageSwitcher.querySelector('[data-lang="en"]');
+            if (englishButton) {
+                englishButton.classList.add('active');
+            }
         }
+    } else {
+        console.warn('Language switcher not found on this page');
     }
 
     // Smooth scrolling for anchor links
