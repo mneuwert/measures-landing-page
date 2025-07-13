@@ -308,24 +308,24 @@ class LanguageManager {
     }
 
     updateNavigationLinks() {
+        console.log('updateNavigationLinks called for language:', this.currentLanguage);
+        
         // Update "Back to Home" link to preserve language
         const backToHomeLinks = document.querySelectorAll('a[href="index.html"], a[href*="index.html"]');
+        console.log('Found back to home links:', backToHomeLinks.length);
         backToHomeLinks.forEach(link => {
+            const oldHref = link.href;
             link.href = `index.html?lang=${this.currentLanguage}`;
+            console.log('Updated home link:', oldHref, '->', link.href);
         });
         
         // Update privacy policy links to preserve language
         const privacyLinks = document.querySelectorAll('a[href="privacy.html"], a[href*="privacy.html"]');
+        console.log('Found privacy links:', privacyLinks.length);
         privacyLinks.forEach(link => {
+            const oldHref = link.href;
             link.href = `privacy.html?lang=${this.currentLanguage}`;
-        });
-        
-        // Update any relative links that might have existing language params
-        const allInternalLinks = document.querySelectorAll('a[href^="index.html"], a[href^="privacy.html"]');
-        allInternalLinks.forEach(link => {
-            const url = new URL(link.href, window.location.href);
-            url.searchParams.set('lang', this.currentLanguage);
-            link.href = url.pathname + url.search;
+            console.log('Updated privacy link:', oldHref, '->', link.href);
         });
     }
 
@@ -340,13 +340,33 @@ class LanguageManager {
             }
         });
 
-        // Update meta tags
+        // Update meta tags (only if they exist)
         document.title = `${t.appName} - ${t.ultimateConverter} ${t.unitConverter} ${t.forIOS}`;
-        document.querySelector('meta[name="description"]').setAttribute('content', t.heroDescription);
-        document.querySelector('meta[property="og:title"]').setAttribute('content', `${t.appName} - ${t.ultimateConverter} ${t.unitConverter} ${t.forIOS}`);
-        document.querySelector('meta[property="og:description"]').setAttribute('content', t.heroDescription);
-        document.querySelector('meta[property="twitter:title"]').setAttribute('content', `${t.appName} - ${t.ultimateConverter} ${t.unitConverter} ${t.forIOS}`);
-        document.querySelector('meta[property="twitter:description"]').setAttribute('content', t.heroDescription);
+        
+        const metaDescription = document.querySelector('meta[name="description"]');
+        if (metaDescription) {
+            metaDescription.setAttribute('content', t.heroDescription);
+        }
+        
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) {
+            ogTitle.setAttribute('content', `${t.appName} - ${t.ultimateConverter} ${t.unitConverter} ${t.forIOS}`);
+        }
+        
+        const ogDescription = document.querySelector('meta[property="og:description"]');
+        if (ogDescription) {
+            ogDescription.setAttribute('content', t.heroDescription);
+        }
+        
+        const twitterTitle = document.querySelector('meta[property="twitter:title"]');
+        if (twitterTitle) {
+            twitterTitle.setAttribute('content', `${t.appName} - ${t.ultimateConverter} ${t.unitConverter} ${t.forIOS}`);
+        }
+        
+        const twitterDescription = document.querySelector('meta[property="twitter:description"]');
+        if (twitterDescription) {
+            twitterDescription.setAttribute('content', t.heroDescription);
+        }
     }
 
     updateScreenshots() {
@@ -373,9 +393,15 @@ class LanguageManager {
             }
         });
 
-        // Update meta image
-        document.querySelector('meta[property="og:image"]').setAttribute('content', `images/01_${filenameLang}.png`);
-        document.querySelector('meta[property="twitter:image"]').setAttribute('content', `images/01_${filenameLang}.png`);
+        // Update meta image (only if meta tags exist)
+        const ogImage = document.querySelector('meta[property="og:image"]');
+        if (ogImage) {
+            ogImage.setAttribute('content', `images/01_${filenameLang}.png`);
+        }
+        const twitterImage = document.querySelector('meta[property="twitter:image"]');
+        if (twitterImage) {
+            twitterImage.setAttribute('content', `images/01_${filenameLang}.png`);
+        }
     }
 
     updateHTML() {
